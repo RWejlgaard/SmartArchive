@@ -1,0 +1,5 @@
+c:\users\niklas.atdata\documents\visual studio 2015\Projects\SmartArchive\SmartArchive-Util\bin\Debug\SmartArchive-Util.exe.config
+c:\users\niklas.atdata\documents\visual studio 2015\Projects\SmartArchive\SmartArchive-Util\bin\Debug\SmartArchive-Util.exe
+c:\users\niklas.atdata\documents\visual studio 2015\Projects\SmartArchive\SmartArchive-Util\bin\Debug\SmartArchive-Util.pdb
+c:\users\niklas.atdata\documents\visual studio 2015\Projects\SmartArchive\SmartArchive-Util\obj\Debug\SmartArchive-Util.exe
+c:\users\niklas.atdata\documents\visual studio 2015\Projects\SmartArchive\SmartArchive-Util\obj\Debug\SmartArchive-Util.pdb
