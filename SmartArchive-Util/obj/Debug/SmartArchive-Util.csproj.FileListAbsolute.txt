@@ -3,13 +3,4 @@ c:\users\niklas.atdata\documents\visual studio 2015\Projects\SmartArchive\SmartA
 c:\users\niklas.atdata\documents\visual studio 2015\Projects\SmartArchive\SmartArchive-Util\bin\Debug\SmartArchive-Util.pdb
 c:\users\niklas.atdata\documents\visual studio 2015\Projects\SmartArchive\SmartArchive-Util\obj\Debug\SmartArchive-Util.exe
 c:\users\niklas.atdata\documents\visual studio 2015\Projects\SmartArchive\SmartArchive-Util\obj\Debug\SmartArchive-Util.pdb
-C:\Users\z6zrw\Source\Repos\SmartArchive\SmartArchive-Util\bin\Debug\SmartArchive-Util.exe.config
-C:\Users\z6zrw\Source\Repos\SmartArchive\SmartArchive-Util\obj\Debug\SmartArchive-Util.exe
-C:\Users\z6zrw\Source\Repos\SmartArchive\SmartArchive-Util\obj\Debug\SmartArchive-Util.pdb
-C:\Users\z6zrw\Source\Repos\SmartArchive\SmartArchive-Util\bin\Debug\SmartArchive-Util.exe
-C:\Users\z6zrw\Source\Repos\SmartArchive\SmartArchive-Util\bin\Debug\SmartArchive-Util.pdb
-C:\Users\z6zrw\Source\Repos\SmartArchive\SmartArchive-Util\obj\Debug\SmartArchive-Util.csprojResolveAssemblyReference.cache
-C:\Users\z6zrw\Source\Repos\SmartArchive\SmartArchive-Util\bin\Debug\Gnu.Getopt.dll
-C:\Users\z6zrw\Source\Repos\SmartArchive\SmartArchive-Util\bin\Debug\Pyratron.Frameworks.Commands.Parser.dll
-C:\Users\z6zrw\Source\Repos\SmartArchive\SmartArchive-Util\bin\Debug\Pyratron.Frameworks.Commands.Parser.pdb
-C:\Users\z6zrw\Source\Repos\SmartArchive\SmartArchive-Util\bin\Debug\Pyratron.Frameworks.Commands.Parser.xml
+C:\Users\niklas.ATDATA\Documents\Visual Studio 2015\Projects\SmartArchive\SmartArchive-Util\obj\Debug\SmartArchive-Util.csprojResolveAssemblyReference.cache

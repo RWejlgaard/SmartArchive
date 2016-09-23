@@ -1,0 +1,19 @@
+﻿<controls:MetroWindow xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:local="clr-namespace:SmartArchive"
+                      xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      x:Class="SmartArchive.Windows.LoginWindow"
+                      mc:Ignorable="d"
+                      Title="LoginWindow" Height="300" Width="240"
+                      ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
+                      FontFamily="/SmartArchive;component/Assets/#Futura Bk BT"
+                      >
+
+    <Grid>
+        <Button Width="140" Height="30" Content="Login" Click="LoginButton_OnClick" Margin="46,200,46,39" />
+        <Label x:Name="label" Content="LOGINWINDOW" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="3,0,0,0" FontSize="14.667" Width="151"/>
+    </Grid>
+
+</controls:MetroWindow> 

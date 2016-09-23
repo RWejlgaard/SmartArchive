@@ -1,0 +1,28 @@
+﻿<Controls:MetroWindow x:Class="SmartArchive.Windows.MainWindow"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                      Title="MainWindow"
+                      Height="600"
+                      Width="800" WindowStartupLocation="CenterScreen"
+                      >
+
+    <!--<Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands>
+
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.RightWindowCommands>-->
+
+    <Controls:MetroWindow.Flyouts>
+        <Controls:FlyoutsControl>
+            <Controls:Flyout x:Name="foLeftMenu" Position="Left" Width="200" Margin="0,15,0,0" Header="Flyout" TitleVisibility="Collapsed" CloseButtonVisibility="Collapsed"
+                             ExternalCloseButton="Left" >
+            </Controls:Flyout>
+        </Controls:FlyoutsControl>
+    </Controls:MetroWindow.Flyouts>
+
+    <Grid>
+        <ToggleButton x:Name="LeftMenuButton" Click="LeftMenuButton_OnClick" Style="{DynamicResource MaterialDesignHamburgerToggleButton}" Margin="378,41,378,491" />
+    </Grid>
+
+</Controls:MetroWindow>

@@ -10,40 +10,20 @@ c:\users\niklas.atdata\documents\visual studio 2015\Projects\SmartArchive\SmartA
 c:\users\niklas.atdata\documents\visual studio 2015\Projects\SmartArchive\SmartArchive\bin\Debug\MahApps.Metro.xml
 c:\users\niklas.atdata\documents\visual studio 2015\Projects\SmartArchive\SmartArchive\bin\Debug\MaterialDesignThemes.Wpf.pdb
 c:\users\niklas.atdata\documents\visual studio 2015\Projects\SmartArchive\SmartArchive\bin\Debug\MaterialDesignThemes.Wpf.xml
-c:\users\niklas.atdata\documents\visual studio 2015\Projects\SmartArchive\SmartArchive\obj\Debug\SmartArchive-Desktop.csprojResolveAssemblyReference.cache
-c:\users\niklas.atdata\documents\visual studio 2015\Projects\SmartArchive\SmartArchive\obj\Debug\MainWindow.g.cs
 c:\users\niklas.atdata\documents\visual studio 2015\Projects\SmartArchive\SmartArchive\obj\Debug\App.g.cs
 c:\users\niklas.atdata\documents\visual studio 2015\Projects\SmartArchive\SmartArchive\obj\Debug\SmartArchive_MarkupCompile.cache
-c:\users\niklas.atdata\documents\visual studio 2015\Projects\SmartArchive\SmartArchive\obj\Debug\MainWindow.baml
 c:\users\niklas.atdata\documents\visual studio 2015\Projects\SmartArchive\SmartArchive\obj\Debug\SmartArchive.g.resources
 c:\users\niklas.atdata\documents\visual studio 2015\Projects\SmartArchive\SmartArchive\obj\Debug\SmartArchive.Properties.Resources.resources
 c:\users\niklas.atdata\documents\visual studio 2015\Projects\SmartArchive\SmartArchive\obj\Debug\SmartArchive-Desktop.csproj.GenerateResource.Cache
 c:\users\niklas.atdata\documents\visual studio 2015\Projects\SmartArchive\SmartArchive\obj\Debug\SmartArchive.exe
 c:\users\niklas.atdata\documents\visual studio 2015\Projects\SmartArchive\SmartArchive\obj\Debug\SmartArchive.pdb
 c:\users\niklas.atdata\documents\visual studio 2015\Projects\SmartArchive\SmartArchive\bin\Debug\MaterialDesignColors.pdb
-c:\users\niklas.atdata\documents\visual studio 2015\Projects\SmartArchive\SmartArchive\obj\Debug\SmartArchive_MarkupCompile.lref
 c:\users\niklas.atdata\documents\visual studio 2015\Projects\SmartArchive\SmartArchive\obj\Debug\App.baml
-C:\Users\z6zrw\Source\Repos\SmartArchive\SmartArchive\bin\Debug\SmartArchive.exe.config
-C:\Users\z6zrw\Source\Repos\SmartArchive\SmartArchive\obj\Debug\SmartArchive.exe
-C:\Users\z6zrw\Source\Repos\SmartArchive\SmartArchive\obj\Debug\SmartArchive.pdb
-C:\Users\z6zrw\Source\Repos\SmartArchive\SmartArchive\bin\Debug\SmartArchive.exe
-C:\Users\z6zrw\Source\Repos\SmartArchive\SmartArchive\bin\Debug\SmartArchive.pdb
-C:\Users\z6zrw\Source\Repos\SmartArchive\SmartArchive\bin\Debug\MahApps.Metro.dll
-C:\Users\z6zrw\Source\Repos\SmartArchive\SmartArchive\bin\Debug\MaterialDesignColors.dll
-C:\Users\z6zrw\Source\Repos\SmartArchive\SmartArchive\bin\Debug\MaterialDesignThemes.MahApps.dll
-C:\Users\z6zrw\Source\Repos\SmartArchive\SmartArchive\bin\Debug\MaterialDesignThemes.Wpf.dll
-C:\Users\z6zrw\Source\Repos\SmartArchive\SmartArchive\bin\Debug\System.Windows.Interactivity.dll
-C:\Users\z6zrw\Source\Repos\SmartArchive\SmartArchive\bin\Debug\MahApps.Metro.pdb
-C:\Users\z6zrw\Source\Repos\SmartArchive\SmartArchive\bin\Debug\MahApps.Metro.xml
-C:\Users\z6zrw\Source\Repos\SmartArchive\SmartArchive\bin\Debug\MaterialDesignColors.pdb
-C:\Users\z6zrw\Source\Repos\SmartArchive\SmartArchive\bin\Debug\MaterialDesignThemes.Wpf.pdb
-C:\Users\z6zrw\Source\Repos\SmartArchive\SmartArchive\bin\Debug\MaterialDesignThemes.Wpf.xml
-C:\Users\z6zrw\Source\Repos\SmartArchive\SmartArchive\obj\Debug\SmartArchive-Desktop.csprojResolveAssemblyReference.cache
-C:\Users\z6zrw\Source\Repos\SmartArchive\SmartArchive\obj\Debug\MainWindow.baml
-C:\Users\z6zrw\Source\Repos\SmartArchive\SmartArchive\obj\Debug\App.baml
-C:\Users\z6zrw\Source\Repos\SmartArchive\SmartArchive\obj\Debug\MainWindow.g.cs
-C:\Users\z6zrw\Source\Repos\SmartArchive\SmartArchive\obj\Debug\App.g.cs
-C:\Users\z6zrw\Source\Repos\SmartArchive\SmartArchive\obj\Debug\SmartArchive_MarkupCompile.cache
-C:\Users\z6zrw\Source\Repos\SmartArchive\SmartArchive\obj\Debug\SmartArchive.g.resources
-C:\Users\z6zrw\Source\Repos\SmartArchive\SmartArchive\obj\Debug\SmartArchive.Properties.Resources.resources
-C:\Users\z6zrw\Source\Repos\SmartArchive\SmartArchive\obj\Debug\SmartArchive-Desktop.csproj.GenerateResource.Cache
+C:\Users\niklas.ATDATA\Documents\Visual Studio 2015\Projects\SmartArchive\SmartArchive\obj\Debug\Windows\MainWindow.baml
+C:\Users\niklas.ATDATA\Documents\Visual Studio 2015\Projects\SmartArchive\SmartArchive\obj\Debug\Windows\LoginWindow.g.cs
+C:\Users\niklas.ATDATA\Documents\Visual Studio 2015\Projects\SmartArchive\SmartArchive\obj\Debug\Windows\MainWindow.g.cs
+C:\Users\niklas.ATDATA\Documents\Visual Studio 2015\Projects\SmartArchive\SmartArchive\obj\Debug\SmartArchive_MarkupCompile.lref
+C:\Users\niklas.ATDATA\Documents\Visual Studio 2015\Projects\SmartArchive\SmartArchive\obj\Debug\Windows\LoginWindow.baml
+C:\Users\niklas.ATDATA\Documents\GitHub\SmartArchive\SmartArchive\bin\Debug\SmartArchive.exe.config
+C:\Users\niklas.ATDATA\Documents\GitHub\SmartArchive\SmartArchive\obj\Debug\SmartArchive.exe
+C:\Users\niklas.ATDATA\Documents\GitHub\SmartArchive\SmartArchive\obj\Debug\SmartArchive.pdb
