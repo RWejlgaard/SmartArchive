@@ -13,7 +13,7 @@
 
     <Grid>
         <Button Width="140" Height="30" Content="Login" Click="LoginButton_OnClick" Margin="46,200,46,39" />
-        <Label x:Name="label" Content="LOGINWINDOW" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="3,0,0,0" FontSize="14.667" Width="151"/>
+        <Label x:Name="label" Content="LoginWindow" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="3,0,0,0" FontSize="14.667" Width="151"/>
     </Grid>
 
 </controls:MetroWindow> 

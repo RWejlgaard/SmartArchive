@@ -5,8 +5,6 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartArchive-Desktop", "SmartArchive\SmartArchive-Desktop.csproj", "{859D1DAA-5A19-4296-B97D-EE0EAD6F6C8D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartArchive-Util", "SmartArchive-Util\SmartArchive-Util.csproj", "{28295EEE-99B5-462F-A900-848FAF25AF40}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{859D1DAA-5A19-4296-B97D-EE0EAD6F6C8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{859D1DAA-5A19-4296-B97D-EE0EAD6F6C8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{859D1DAA-5A19-4296-B97D-EE0EAD6F6C8D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{28295EEE-99B5-462F-A900-848FAF25AF40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{28295EEE-99B5-462F-A900-848FAF25AF40}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{28295EEE-99B5-462F-A900-848FAF25AF40}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{28295EEE-99B5-462F-A900-848FAF25AF40}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
