@@ -1,0 +1,31 @@
+﻿<controls:MetroWindow xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:local="clr-namespace:SmartArchive"
+                      xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      x:Class="SmartArchive.Windows.debug"
+                      mc:Ignorable="d"
+        Title="debug" Height="360.174" Width="525">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="160"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <ScrollViewer>
+            <StackPanel>
+                <Button Content="Connect" Margin="2" Click="ConnectBtn_Click"/>
+                <Button x:Name="CreateUserBtn" Content="Create User" Margin="2" Click="CreateUserBtn_Click"/>
+                <Button Content="getUserSql" Margin="2" Click="Button_Click"/>
+
+            </StackPanel>
+        </ScrollViewer>
+
+        <GridSplitter Grid.Column="1"/>
+        <TextBox x:Name="usernameInput" Grid.Column="2" HorizontalAlignment="Left" Height="29" Margin="20,41,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="PasswordInput" Grid.Column="2" HorizontalAlignment="Left" Height="29" Margin="20,75,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="label" Content="Create User" Grid.Column="2" HorizontalAlignment="Left" Margin="20,10,0,0" VerticalAlignment="Top" Height="31" Width="120" FontSize="18"/>
+
+    </Grid>
+</controls:MetroWindow>
