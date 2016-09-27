@@ -16,14 +16,16 @@
         <ScrollViewer>
             <StackPanel>
                 <Button Content="Connect" Margin="2" Click="ConnectBtn_Click"/>
-                <Button Content="Create User" Margin="2"/>
+                <Button x:Name="CreateUserBtn" Content="Create User" Margin="2" Click="CreateUserBtn_Click"/>
                 <Button Content="getUserSql" Margin="2" Click="Button_Click"/>
-                
+
             </StackPanel>
         </ScrollViewer>
 
         <GridSplitter Grid.Column="1"/>
-        <TextBox x:Name="log"  Grid.Column="2" Text=""  />
+        <TextBox x:Name="usernameInput" Grid.Column="2" HorizontalAlignment="Left" Height="29" Margin="20,41,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="PasswordInput" Grid.Column="2" HorizontalAlignment="Left" Height="29" Margin="20,75,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="label" Content="Create User" Grid.Column="2" HorizontalAlignment="Left" Margin="20,10,0,0" VerticalAlignment="Top" Height="31" Width="120" FontSize="18"/>
 
     </Grid>
 </controls:MetroWindow>

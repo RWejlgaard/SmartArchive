@@ -1,57 +1,126 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using MySql.Data.MySqlClient;
 
 namespace SmartArchive {
     static class Util {
-        private static bool IsConnected = false;
-        private static MySqlConnection Sql;
-        
-        public static string host = "smartarchive.net";
-        public static string connString = $"Server={host};Database=smartarchive;Uid=root;Pwd=Password!;";
+        private static bool _isConnected;
+        private static MySqlConnection _sql;
 
-        public static async void Connect(int SqlPort = 3306, int FtpPort = 21) {
-            if (IsConnected) return;
-            if (string.IsNullOrEmpty(host)) {
+        public static string Host = "smartarchive.net";
+        public static string ConnString = $"Server={Host};Database=smartarchive;Uid=root;Pwd=Password!;";
+
+        public enum LoginState {
+            Success,
+            UserDoesNotExist,
+            DetailsIncorrect,
+            ConnectionFailed
+        }
+
+        public enum RegisterState {
+            Success,
+            UsernameExists,
+            UsernameTooLong,
+            UsernameTooShort,
+            ConnectionFailed
+        }
+
+        private static async void Connect() {
+            if (_isConnected) return;
+            if (string.IsNullOrEmpty(Host)) {
                 MessageBox.Show("Error! Host not set");
             }
-            Sql = new MySqlConnection(connString);
+            _sql = new MySqlConnection(ConnString);
             try {
-                await Sql.OpenAsync();
-                IsConnected = true;
+                await _sql.OpenAsync();
+                _isConnected = true;
             }
             catch (Exception e) {
-                IsConnected = false;
+                _isConnected = false;
                 MessageBox.Show(e.ToString());
-                return;
             }
-            
-            
         }
 
-        public static void CreateUser(string username, string password) {
+        public static RegisterState CreateUser(string username, string password) {
+            Connect();
+            username = username.ToUpper();
+            var selectUsername = new MySqlCommand($"SELECT * FROM smartarchive.logins WHERE username = \"{username}\"",_sql);
+            int usernameExists;
+            try {
+                usernameExists = Convert.ToInt32(selectUsername.ExecuteScalar());
+            }
+            catch (Exception) {
+                return RegisterState.ConnectionFailed;
+            }
+
+            RegisterState state;
+
+
+            if (usernameExists > 0) {
+                state = RegisterState.UsernameExists;
+            }
+            else if (username.Length < 3) {
+                state = RegisterState.UsernameTooShort;
+            }
+            else if (username.Length > 15) {
+                state = RegisterState.UsernameTooLong;
+            }
+            else {
+                state = RegisterState.Success;
+                var createUser = new MySqlCommand($"INSERT INTO smartarchive.logins (username, password) VALUES(\"{username}\",\"{Sha256(password)}\")", _sql);
+                createUser.ExecuteNonQuery();
+            }
+
+            selectUsername.Dispose();
+            
+            return state;
 
         }
 
-        public static bool AuthUser(string username, string password){
-            var getUserRow = new MySqlCommand($"SELECT `password` FROM smartarchive.logins where username = \"{username}\"", Sql);
-            var reader = getUserRow.ExecuteReader();
-            reader.Read();
+        private static string Sha256(string password) {
+            var crypt = new SHA256Managed();
+            var hash = string.Empty;
+            var crypto = crypt.ComputeHash(Encoding.ASCII.GetBytes(password), 0, Encoding.ASCII.GetByteCount(password));
+            return crypto.Aggregate(hash, (current, theByte) => current + theByte.ToString("x"));
+        }
+
+        public static LoginState AuthUser(string username, string password) {
+            Connect();
+            username = username.ToUpper();
+            var getUserRow = new MySqlCommand($"SELECT `password` FROM smartarchive.logins where username = \"{username}\"", _sql);
+            MySqlDataReader reader = null;
+            var state = LoginState.Success;
+
+            try {
+                reader = getUserRow.ExecuteReader();
+                reader.Read();
+            }
+            catch (Exception) {
+                state = LoginState.ConnectionFailed;
+            }
+
             var pass = "";
+
             try {
                 pass = reader.GetString(0);
             }
             catch (Exception) {
-                MessageBox.Show("Username does not exist");
-                return false;
+                state = LoginState.UserDoesNotExist;
             }
-            return password == pass;
+
+            var hash = Sha256(password);
+
+            if (hash != pass) {
+                state = LoginState.DetailsIncorrect;
+            }
+
+            getUserRow.Dispose();
+            reader.Dispose();
+
+            return state;
         }
     }
 }

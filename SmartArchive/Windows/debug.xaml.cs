@@ -23,17 +23,54 @@ namespace SmartArchive.Windows
         public debug()
         {
             InitializeComponent();
-            Util.log = log;
         }
 
         private void ConnectBtn_Click(object sender, RoutedEventArgs e) {
             
-            Util.Connect();
         }
 
+
+
         private void Button_Click(object sender, RoutedEventArgs e) {
-            Util.Connect();
-            this.ShowMessageAsync("", Util.AuthUser("rasmus", "passowrdosjfsidaifdoj") ? "Login Successful" : "Login Failed!");
+            switch (Util.AuthUser("rasmus", "password")) {
+                case Util.LoginState.Success:
+                    MessageBox.Show("Success");
+                    break;
+                case Util.LoginState.UserDoesNotExist:
+                    MessageBox.Show("USer does not exist");
+                    break;
+                case Util.LoginState.DetailsIncorrect:
+                    MessageBox.Show("Username or password is incorrect");
+                    break;
+                case Util.LoginState.ConnectionFailed:
+                    MessageBox.Show("connection failed");
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        private void CreateUserBtn_Click(object sender, RoutedEventArgs e)
+        {
+            switch (Util.CreateUser(usernameInput.Text,PasswordInput.Text)) {
+                case Util.RegisterState.Success:
+                    MessageBox.Show("Success");
+                    break;
+                case Util.RegisterState.UsernameExists:
+                    MessageBox.Show("Username already exists");
+                    break;
+                case Util.RegisterState.UsernameTooLong:
+                    MessageBox.Show("Username too long");
+                    break;
+                case Util.RegisterState.UsernameTooShort:
+                    MessageBox.Show("Username too short");
+                    break;
+                case Util.RegisterState.ConnectionFailed:
+                    MessageBox.Show("Connexion failed");
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
     }
 }
