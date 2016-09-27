@@ -46,7 +46,6 @@ C:\Users\niklas.ATDATA\Documents\GitHub\SmartArchive\SmartArchive\obj\Debug\Wind
 C:\Users\niklas.ATDATA\Documents\GitHub\SmartArchive\SmartArchive\obj\Debug\Windows\MainWindow.g.cs
 C:\Users\niklas.ATDATA\Documents\GitHub\SmartArchive\SmartArchive\obj\Debug\App.g.cs
 C:\Users\niklas.ATDATA\Documents\GitHub\SmartArchive\SmartArchive\obj\Debug\SmartArchive_MarkupCompile.cache
-C:\Users\niklas.ATDATA\Documents\GitHub\SmartArchive\SmartArchive\obj\Debug\SmartArchive_MarkupCompile.lref
 C:\Users\niklas.ATDATA\Documents\GitHub\SmartArchive\SmartArchive\obj\Debug\Windows\LoginWindow.baml
 C:\Users\niklas.ATDATA\Documents\GitHub\SmartArchive\SmartArchive\obj\Debug\SmartArchive.g.resources
 C:\Users\niklas.ATDATA\Documents\GitHub\SmartArchive\SmartArchive\obj\Debug\SmartArchive.Properties.Resources.resources

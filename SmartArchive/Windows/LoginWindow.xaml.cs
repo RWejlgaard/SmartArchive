@@ -25,6 +25,7 @@ namespace SmartArchive.Windows {
         }
 
         private void LoginButton_OnClick(object sender, RoutedEventArgs e) {
+            // TODO Login check
             LoginSuccess = true;
             Close();
         }
