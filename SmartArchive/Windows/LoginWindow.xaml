@@ -6,14 +6,43 @@
                       xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
                       x:Class="SmartArchive.Windows.LoginWindow"
                       mc:Ignorable="d"
-                      Title="LoginWindow" Height="300" Width="240"
+                      Title="Login" Height="395" Width="256"
                       ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
-                      FontFamily="/SmartArchive;component/Assets/#Futura Bk BT"
+                      Icon="/SmartArchive;component/Assets/Icons/icon_32x32-plain.png"
                       >
 
-    <Grid>
-        <Button Width="140" Height="30" Content="Login" Click="LoginButton_OnClick" Margin="46,200,46,39" />
-        <Label x:Name="label" Content="LoginWindow" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="3,0,0,0" FontSize="14.667" Width="151"/>
+    <Grid x:Name="MainGrid" HorizontalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="155" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+
+        <Image x:Name="Logo" Source="/SmartArchive;component/Assets/Icons/icon_256x256-plain.png" Grid.Row="1" />
+        <Label x:Name="Title" Grid.Row="2" Content="Smart Archive" FontSize="22.667" FontFamily="/SmartArchive;component/Assets/#Futura Bk BT"
+               Margin="0,-5,0,12" HorizontalContentAlignment="Center" />
+
+        <Border BorderBrush="#2196f3" BorderThickness="0.5" CornerRadius="2" Grid.Row="3" Margin="0,0,0,0">
+            <TextBox x:Name="UsernameInput" Text="Username..." BorderBrush="Transparent" FontStyle="Italic" HorizontalContentAlignment="Stretch"
+                     Padding="3,0,0,0" GotFocus="UsernameInput_OnGotFocus" LostFocus="UsernameInput_OnLostFocus" />
+        </Border>
+
+        <Border BorderBrush="#2196f3" BorderThickness="0.5" CornerRadius="2" Grid.Row="4" Margin="0,5,0,3">
+            <PasswordBox x:Name="PasswordInput" Password="Password" BorderBrush="Transparent" FontStyle="Italic" HorizontalContentAlignment="Stretch"
+                         Padding="3,0,0,0" GotFocus="PasswordInput_OnGotFocus" LostFocus="PasswordInput_OnLostFocus" />
+        </Border>
+        
+        <CheckBox x:Name="RememberCheckBox" Grid.Row="5" Content="Remember me" />
+
+        <Button x:Name="LoginBtn" Grid.Row="6" Height="30" Content="Sign In" Click="LoginButton_OnClick" Margin="0,10,0,0" Padding="0" />
     </Grid>
 
-</controls:MetroWindow> 
+</controls:MetroWindow>

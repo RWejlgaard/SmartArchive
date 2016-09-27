@@ -19,7 +19,7 @@ namespace SmartArchive.Windows
     /// </summary>
     public partial class MainWindow
     {
-        private bool _leftMenuVisible;
+        public bool LeftMenuVisible;
 
         public MainWindow()
         {
@@ -40,10 +40,10 @@ namespace SmartArchive.Windows
             };
         }
 
-        private void LeftMenuButton_OnClick(object sender, RoutedEventArgs e)
+        private void FlyOutButton_OnClick(object sender, RoutedEventArgs e)
         {
-            _leftMenuVisible = !_leftMenuVisible;
-            foLeftMenu.IsOpen = _leftMenuVisible;
+            LeftMenuVisible = !LeftMenuVisible;
+            FoLeftMenu.IsOpen = LeftMenuVisible;
         }
     }
 }

@@ -133,7 +133,23 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Assets\Icons\icon_512x512-rounded.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\icon_512x512-circle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\icon_128x128-circle.png" />
+    <Resource Include="Assets\Icons\icon_256x256-circle.png" />
+    <Resource Include="Assets\Icons\icon_32x32-circle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Icons\icon_128x128-plain.png" />
+    <Resource Include="Assets\Icons\icon_256x256-plain.png" />
+    <Resource Include="Assets\Icons\icon_32x32-plain.png" />
+    <Resource Include="Assets\Icons\icon_512x512-plain.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
