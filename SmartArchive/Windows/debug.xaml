@@ -1,0 +1,29 @@
+﻿<controls:MetroWindow xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:local="clr-namespace:SmartArchive"
+                      xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      x:Class="SmartArchive.Windows.debug"
+                      mc:Ignorable="d"
+        Title="debug" Height="360.174" Width="525">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="160"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <ScrollViewer>
+            <StackPanel>
+                <Button Content="Connect" Margin="2" Click="ConnectBtn_Click"/>
+                <Button Content="Create User" Margin="2"/>
+                <Button Content="getUserSql" Margin="2" Click="Button_Click"/>
+                
+            </StackPanel>
+        </ScrollViewer>
+
+        <GridSplitter Grid.Column="1"/>
+        <TextBox x:Name="log"  Grid.Column="2" Text=""  />
+
+    </Grid>
+</controls:MetroWindow>
