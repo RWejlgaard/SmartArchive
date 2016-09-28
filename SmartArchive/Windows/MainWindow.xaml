@@ -1,10 +1,10 @@
-﻿<controls:MetroWindow x:Class="SmartArchive.Windows.MainWindow"
+﻿<Controls:MetroWindow x:Class="SmartArchive.Windows.MainWindow"
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                      xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-                      Title="Smart Archive" Height="600" Width="800"
-                      WindowStartupLocation="CenterScreen"
-                      Icon="/SmartArchive;component/Assets/Icons/icon_32x32-plain.png"
+                      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                      Title="Smart Archive"
+                      Height="600"
+                      Width="800" WindowStartupLocation="CenterScreen" Icon="/SmartArchive;component/Assets/Icons/icon_32x32-plain.png"
                       >
 
     <!--<Controls:MetroWindow.RightWindowCommands>
@@ -13,67 +13,26 @@
         </Controls:WindowCommands>
     </Controls:MetroWindow.RightWindowCommands>-->
 
+    <Controls:MetroWindow.Flyouts>
+        <Controls:FlyoutsControl>
+            <Controls:Flyout x:Name="FoLeftMenu" Position="Left" Width="200" Margin="0,15,0,0" TitleVisibility="Collapsed"
+                             CloseButtonVisibility="Collapsed" >
+                <ToggleButton x:Name="FlyOuButton" Click="FlyOutButton_OnClick" Style="{DynamicResource MaterialDesignHamburgerToggleButton}"
+                              HorizontalAlignment="Right" VerticalAlignment="Top" />
+            </Controls:Flyout>
+        </Controls:FlyoutsControl>
+    </Controls:MetroWindow.Flyouts>
 
-    <!-- FlyOut Menu -->
-    <controls:MetroWindow.Flyouts>
-        <controls:FlyoutsControl>
-            <controls:Flyout x:Name="FoLeftMenu" Position="Left" Width="200" Margin="0,15,0,0"
-                             TitleVisibility="Collapsed"
-                             CloseButtonVisibility="Collapsed">
-                <Grid x:Name="FlyOutGrid" Margin="0,-35,0,0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="2.5" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-
-                    <!-- Label and Close button -->
-                    <ToggleButton x:Name="FlyOutCloser" Click="FlyOutButton_OnClick"
-                                  Style="{DynamicResource MaterialDesignHamburgerToggleButton}"
-                                  HorizontalAlignment="Right" VerticalAlignment="Top" />
-                    <Label x:Name="FilterLabel" Content="Filter by type" Grid.Row="0" FontSize="21.333"
-                           HorizontalAlignment="Left" VerticalAlignment="Bottom" />
-
-                    <!-- Filter selection -->
-                    <ListBox x:Name="FileTypeSelection" Grid.Row="1" ItemsSource="{Binding Path=FileTypeList}">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel>
-                                    <CheckBox Content="{Binding Path=.}"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-
-                </Grid>
-            </controls:Flyout>
-        </controls:FlyoutsControl>
-    </controls:MetroWindow.Flyouts>
-
-    <!-- MainGrid -->
     <Grid x:Name="MainGrid">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="40" />
-            <ColumnDefinition Width="2.5" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-
-        <!-- Left hand side -->
-        <ToggleButton x:Name="FlyOutOpener" Click="FlyOutButton_OnClick" Grid.Column="0" Grid.Row="0"
-                      Style="{DynamicResource MaterialDesignHamburgerToggleButton}" VerticalAlignment="Top"
-                      HorizontalAlignment="Center" />
-        <GridSplitter Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Width="2.5" HorizontalAlignment="Stretch"
-                      IsEnabled="False" Background="#7F000000" />
-        
-        <!-- File viewer -->
-        <!-- Float action button -->
-
+            <ToggleButton x:Name="FlyOutButton" Click="FlyOutButton_OnClick" Grid.Column="1" Style="{DynamicResource MaterialDesignHamburgerToggleButton}"
+                          VerticalAlignment="Top" HorizontalAlignment="Right" />
     </Grid>
 
-</controls:MetroWindow>
+</Controls:MetroWindow>

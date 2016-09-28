@@ -33,7 +33,6 @@ namespace SmartArchive.Windows {
         }
 
         private void LoginButton_OnClick(object sender, RoutedEventArgs e) {
-<<<<<<< HEAD
             Login(UsernameInput.Text,PasswordInput.Password);
         }
 
@@ -63,11 +62,6 @@ namespace SmartArchive.Windows {
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-=======
-            // TODO Login check
-            LoginSuccess = true;
-            Close();
->>>>>>> origin/master
         }
 
         private void UsernameInput_OnGotFocus(object sender, RoutedEventArgs e) {

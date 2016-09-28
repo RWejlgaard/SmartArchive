@@ -2,64 +2,46 @@
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:local="clr-namespace:SmartArchive"
                       xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
                       x:Class="SmartArchive.Windows.LoginWindow"
-<<<<<<< HEAD
                       mc:Ignorable="d"
                       Title="Login" Height="395" Width="256"
                       ResizeMode="NoResize" WindowStartupLocation="CenterScreen"                    
                       >
-=======
-                      mc:Ignorable="d" Title="Login" Height="395" Width="256"
-                      ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
->>>>>>> origin/master
 
-    <!-- MainGrid -->
     <Grid x:Name="MainGrid" HorizontalAlignment="Center">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="155" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="20" />
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
-        <!-- Logo and label -->
         <Image x:Name="Logo" Source="/SmartArchive;component/Assets/Icons/icon_256x256-plain.png" Grid.Row="1" />
-        <Label x:Name="Title" Grid.Row="2" Content="Smart Archive" FontSize="22.667"
-               FontFamily="/SmartArchive;component/Assets/#Futura Bk BT"
+        <Label x:Name="Title" Grid.Row="2" Content="Smart Archive" FontSize="22.667" FontFamily="/SmartArchive;component/Assets/#Futura Bk BT"
                Margin="0,-5,0,12" HorizontalContentAlignment="Center" />
 
-        <!-- Username and password input fields -->
         <Border BorderBrush="#2196f3" BorderThickness="0.5" CornerRadius="2" Grid.Row="3" Margin="0,0,0,0">
-            <TextBox x:Name="UsernameInput" Text="Username..." BorderBrush="Transparent" FontStyle="Italic"
-                     HorizontalContentAlignment="Stretch"
+            <TextBox x:Name="UsernameInput" Text="Username..." BorderBrush="Transparent" FontStyle="Italic" HorizontalContentAlignment="Stretch"
                      Padding="3,0,0,0" GotFocus="UsernameInput_OnGotFocus" LostFocus="UsernameInput_OnLostFocus" />
         </Border>
+
         <Border BorderBrush="#2196f3" BorderThickness="0.5" CornerRadius="2" Grid.Row="4" Margin="0,5,0,3">
-<<<<<<< HEAD
             <PasswordBox x:Name="PasswordInput" Password="Password" BorderBrush="Transparent" FontStyle="Italic" HorizontalContentAlignment="Stretch"
                          Padding="3,0,0,0" GotFocus="PasswordInput_OnGotFocus" LostFocus="PasswordInput_OnLostFocus" KeyDown="PasswordInput_KeyDown" />
-=======
-            <PasswordBox x:Name="PasswordInput" Password="Password" BorderBrush="Transparent" FontStyle="Italic"
-                         HorizontalContentAlignment="Stretch"
-                         Padding="3,0,0,0" GotFocus="PasswordInput_OnGotFocus" LostFocus="PasswordInput_OnLostFocus" />
->>>>>>> origin/master
         </Border>
-
-        <!-- Remember login -->
+        
         <CheckBox x:Name="RememberCheckBox" Grid.Row="5" Content="Remember me" />
 
-        <!-- Login button -->
-        <Button x:Name="LoginBtn" Grid.Row="6" Height="30" Content="Sign In" Click="LoginButton_OnClick"
-                Margin="0,10,0,0" Padding="0" />
-        
+        <Button x:Name="LoginBtn" Grid.Row="6" Height="30" Content="Sign In" Click="LoginButton_OnClick" Margin="0,10,0,0" Padding="0" />
     </Grid>
 
 </controls:MetroWindow>
