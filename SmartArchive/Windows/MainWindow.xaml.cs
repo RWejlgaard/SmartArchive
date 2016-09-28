@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -19,8 +23,16 @@ namespace SmartArchive.Windows
     /// </summary>
     public partial class MainWindow
     {
-        public bool LeftMenuVisible;
-
+        private ObservableCollection<string> _fileTypeList = new ObservableCollection<string>();
+        public ObservableCollection<string> FileTypeList
+        {
+            get
+            {
+                return _fileTypeList;
+            }
+        }
+        private bool _leftMenuVisible;
+        
         public MainWindow()
         {
             var loginWindow = new LoginWindow(); // Creates new instance of LoginWindow
@@ -36,7 +48,16 @@ namespace SmartArchive.Windows
             }
 
             InitializeComponent();
-            
+            DataContext = this;
+
+            _fileTypeList.Add("txt");
+            _fileTypeList.Add("png");
+            _fileTypeList.Add("jpg");
+            _fileTypeList.Add("gif");
+            _fileTypeList.Add("tiff");
+            _fileTypeList.Add("zip");
+            _fileTypeList.Add("rar");
+
             loginWindow.Closed += delegate {
                 if (loginWindow.LoginSuccess)
                 {
@@ -48,10 +69,22 @@ namespace SmartArchive.Windows
             };
         }
 
-        private void FlyOutButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            LeftMenuVisible = !LeftMenuVisible;
-            FoLeftMenu.IsOpen = LeftMenuVisible;
+        private void FlyOutButton_OnClick(object sender, RoutedEventArgs e) {
+            string name = (sender as ToggleButton).Name;
+
+            _leftMenuVisible = !_leftMenuVisible;
+            FoLeftMenu.IsOpen = _leftMenuVisible;
+
+            switch (name) {
+                case "FlyOutOpener":
+                    FlyOutCloser.IsChecked = _leftMenuVisible;
+                    FlyOutOpener.Visibility = Visibility.Hidden;
+                    break;
+                case "FlyOutCloser":
+                    FlyOutOpener.IsChecked = _leftMenuVisible;
+                    FlyOutOpener.Visibility = Visibility.Visible;
+                    break;
+            }
         }
     }
 }
