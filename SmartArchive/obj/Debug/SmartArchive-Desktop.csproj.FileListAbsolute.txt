@@ -84,5 +84,4 @@ C:\Users\z6zrw\Source\Repos\other\SmartArchive\SmartArchive\bin\Debug\MySql.Data
 C:\Users\z6zrw\Source\Repos\other\SmartArchive\SmartArchive\bin\Debug\MySql.Data.xml
 C:\Users\niklas.ATDATA\Documents\GitHub\SmartArchive\SmartArchive\bin\Debug\MySql.Data.xml
 C:\Users\niklas.ATDATA\Documents\GitHub\SmartArchive\SmartArchive\obj\Debug\Windows\debug.g.cs
-C:\Users\niklas.ATDATA\Documents\GitHub\SmartArchive\SmartArchive\obj\Debug\SmartArchive_MarkupCompile.lref
 C:\Users\niklas.ATDATA\Documents\GitHub\SmartArchive\SmartArchive\obj\Debug\Windows\debug.baml

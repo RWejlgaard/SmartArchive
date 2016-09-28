@@ -15,6 +15,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MahApps.Metro.Controls.Dialogs;
 
 namespace SmartArchive.Windows
 {
@@ -24,21 +25,19 @@ namespace SmartArchive.Windows
     public partial class MainWindow
     {
         private ObservableCollection<string> _fileTypeList = new ObservableCollection<string>();
-        public ObservableCollection<string> FileTypeList
-        {
-            get
-            {
-                return _fileTypeList;
-            }
-        }
+        public ObservableCollection<string> FileTypeList => _fileTypeList;
         private bool _leftMenuVisible;
         
         public MainWindow()
         {
             var loginWindow = new LoginWindow(); // Creates new instance of LoginWindow
             Hide(); // Hides MainWindow
-            loginWindow.Show(); // Shows LoginWindow
-
+            if (!SmartSettings.Default.AutoLogin) {
+                loginWindow.Show(); // Shows LoginWindow
+            }
+            else {
+                Show();
+            }
             InitializeComponent();
             DataContext = this;
 
@@ -77,6 +76,13 @@ namespace SmartArchive.Windows
                     FlyOutOpener.Visibility = Visibility.Visible;
                     break;
             }
+        }
+
+        private async void SignOutBtn_Click(object sender, RoutedEventArgs e)
+        {
+            SmartSettings.Default.Reset();
+            System.Windows.Forms.Application.Restart();
+            Application.Current.Shutdown();
         }
     }
 }

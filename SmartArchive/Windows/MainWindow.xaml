@@ -65,7 +65,7 @@
                         </Grid.ColumnDefinitions>
                         
                         <Image Grid.Column="0" Source="/SmartArchive;component/Assets/Generic Profile Picture.png" Width="32" Height="32" Margin="10,5,0,5" />
-                        <Label Grid.Column="1" Content="Delicious Cake" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" />
+                        <Label Grid.Column="1" Content="████████" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" />
                     </Grid>
 
                     <!-- Usercontrols -->
@@ -73,7 +73,7 @@
                         <Button Content="Account" Style="{DynamicResource MaterialDesignFlatButton}" HorizontalContentAlignment="Left" Foreground="Black"/>
                         <Button Content="Settings" Style="{DynamicResource MaterialDesignFlatButton}" HorizontalContentAlignment="Left" Foreground="Black"/>
                         <Button Content="About" Style="{DynamicResource MaterialDesignFlatButton}" HorizontalContentAlignment="Left" Foreground="Black"/>
-                        <Button Content="Sign out" Style="{DynamicResource MaterialDesignFlatButton}" HorizontalContentAlignment="Left" Foreground="Black"/>
+                        <Button x:Name="SignOutBtn" Content="Sign out" Style="{DynamicResource MaterialDesignFlatButton}" HorizontalContentAlignment="Left" Foreground="Black" Click="SignOutBtn_Click"/>
                     </StackPanel>
 
                 </Grid>

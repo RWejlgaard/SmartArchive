@@ -23,20 +23,19 @@ namespace SmartArchive.Windows {
         public bool UsernameRemembrance;
 
         public LoginWindow() {
-            
             InitializeComponent();
             SmartSettings.Default.Reload();
-            if (SmartSettings.Default.AutoLogin) {
-                Login(SmartSettings.Default.username,SmartSettings.Default.password);
+            if (SmartSettings.Default.AutoLogin)
+            {
+                Login(SmartSettings.Default.username, SmartSettings.Default.password);
             }
-
         }
 
         private void LoginButton_OnClick(object sender, RoutedEventArgs e) {
             Login(UsernameInput.Text,PasswordInput.Password);
         }
 
-        private void Login(string username, string password) {
+        private async void Login(string username, string password) {
             switch (Util.AuthUser(username, password))
             {
                 case Util.LoginState.Success:
@@ -51,13 +50,31 @@ namespace SmartArchive.Windows {
                     Close();
                     break;
                 case Util.LoginState.UserDoesNotExist:
-                    this.ShowMessageAsync("Login Failed", "Username does not exist");
+                    var result = await this.ShowMessageAsync("Login Failed", "Username does not exist\nDo you wish to register?", MessageDialogStyle.AffirmativeAndNegative);
+                    if (result == MessageDialogResult.Affirmative) {
+                        switch (Util.CreateUser(username, password)) {
+                            case Util.RegisterState.Success:
+                                await this.ShowMessageAsync("Success", "User registered");
+                                break;
+                            case Util.RegisterState.ConnectionFailed:
+                                await this.ShowMessageAsync("Oops","Connection failed");
+                                break;
+                            case Util.RegisterState.UsernameTooLong:
+                                await this.ShowMessageAsync("Oops", "Username too long");
+                                break;
+                            case Util.RegisterState.UsernameTooShort:
+                                await this.ShowMessageAsync("Oops", "Username too short");
+                                break;
+                            default:
+                                throw new ArgumentOutOfRangeException();
+                        }
+                    }
                     break;
                 case Util.LoginState.DetailsIncorrect:
-                    this.ShowMessageAsync("Login Failed", "Username or password is incorrect");
+                    await this.ShowMessageAsync("Login Failed", "Username or password is incorrect");
                     break;
                 case Util.LoginState.ConnectionFailed:
-                    this.ShowMessageAsync("Login Failed", "Connection failed");
+                    await this.ShowMessageAsync("Oops", "Connection failed");
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -95,7 +112,7 @@ namespace SmartArchive.Windows {
         // Listens for Enter keypress in password 
         private void PasswordInput_KeyDown(object sender, KeyEventArgs e) {
             if (e.Key == Key.Enter) {
-               Login(UsernameInput.Text,PasswordInput.Password);
+                Login(UsernameInput.Text, PasswordInput.Password);
             }
         }
     }

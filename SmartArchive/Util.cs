@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows;
@@ -44,38 +45,43 @@ namespace SmartArchive {
             }
         }
 
-        public static RegisterState CreateUser(string username, string password) {
-            Connect();
-            username = username.ToUpper();
-            var selectUsername = new MySqlCommand($"SELECT * FROM smartarchive.logins WHERE username = \"{username}\"",_sql);
+        private static bool existsInSql(this string username) {
+            var selectUsername = new MySqlCommand($"SELECT * FROM smartarchive.logins WHERE username = \"{username}\"", _sql);
             int usernameExists;
-            try {
+            try
+            {
                 usernameExists = Convert.ToInt32(selectUsername.ExecuteScalar());
             }
             catch (Exception) {
-                return RegisterState.ConnectionFailed;
+                return false;
             }
+            return usernameExists > 0;
+        }
+
+        public static RegisterState CreateUser(string username, string password) {
+            Connect();
+            username = username.ToUpper();
+            
 
             RegisterState state;
 
 
-            if (usernameExists > 0) {
+            if (username.existsInSql()) {
                 state = RegisterState.UsernameExists;
             }
             else if (username.Length < 3) {
                 state = RegisterState.UsernameTooShort;
             }
-            else if (username.Length > 15) {
+            else if (username.Length > 9) {
                 state = RegisterState.UsernameTooLong;
             }
             else {
                 state = RegisterState.Success;
                 var createUser = new MySqlCommand($"INSERT INTO smartarchive.logins (username, password) VALUES(\"{username}\",\"{Sha256(password)}\")", _sql);
                 createUser.ExecuteNonQuery();
+                
             }
-
-            selectUsername.Dispose();
-            
+                        
             return state;
 
         }
@@ -114,7 +120,7 @@ namespace SmartArchive {
             var hash = Sha256(password);
 
             if (hash != pass) {
-                state = LoginState.DetailsIncorrect;
+                state = !username.existsInSql() ? LoginState.UserDoesNotExist : LoginState.DetailsIncorrect;
             }
 
             getUserRow.Dispose();
