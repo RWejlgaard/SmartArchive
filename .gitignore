@@ -3,4 +3,7 @@
 ################################################################################
 
 /.vs/SmartArchive/v14
+SmartArchive/obj/Debug/SmartArchive.g.resources
+SmartArchive/obj/Debug/SmartArchive.pdb
+SmartArchive/obj/Debug/SmartArchive.g.resources
 SmartArchive/obj/Debug/SmartArchive_MarkupCompile.lref
