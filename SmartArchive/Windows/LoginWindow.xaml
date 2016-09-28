@@ -7,8 +7,7 @@
                       x:Class="SmartArchive.Windows.LoginWindow"
                       mc:Ignorable="d"
                       Title="Login" Height="395" Width="256"
-                      ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
-                      Icon="/SmartArchive;component/Assets/Icons/icon_32x32-plain.png"
+                      ResizeMode="NoResize" WindowStartupLocation="CenterScreen"                    
                       >
 
     <Grid x:Name="MainGrid" HorizontalAlignment="Center">
@@ -37,7 +36,7 @@
 
         <Border BorderBrush="#2196f3" BorderThickness="0.5" CornerRadius="2" Grid.Row="4" Margin="0,5,0,3">
             <PasswordBox x:Name="PasswordInput" Password="Password" BorderBrush="Transparent" FontStyle="Italic" HorizontalContentAlignment="Stretch"
-                         Padding="3,0,0,0" GotFocus="PasswordInput_OnGotFocus" LostFocus="PasswordInput_OnLostFocus" />
+                         Padding="3,0,0,0" GotFocus="PasswordInput_OnGotFocus" LostFocus="PasswordInput_OnLostFocus" KeyDown="PasswordInput_KeyDown" />
         </Border>
         
         <CheckBox x:Name="RememberCheckBox" Grid.Row="5" Content="Remember me" />

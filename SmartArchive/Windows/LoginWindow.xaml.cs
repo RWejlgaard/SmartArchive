@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MahApps.Metro.Controls.Dialogs;
+using SmartArchive.Properties;
 
 namespace SmartArchive.Windows {
     /// <summary>
@@ -21,12 +23,45 @@ namespace SmartArchive.Windows {
         public bool UsernameRemembrance;
 
         public LoginWindow() {
+            
             InitializeComponent();
+            SmartSettings.Default.Reload();
+            if (SmartSettings.Default.AutoLogin) {
+                Login(SmartSettings.Default.username,SmartSettings.Default.password);
+            }
+
         }
 
         private void LoginButton_OnClick(object sender, RoutedEventArgs e) {
-            LoginSuccess = true;
-            Close();
+            Login(UsernameInput.Text,PasswordInput.Password);
+        }
+
+        private void Login(string username, string password) {
+            switch (Util.AuthUser(username, password))
+            {
+                case Util.LoginState.Success:
+                    LoginSuccess = true;
+                    if (RememberCheckBox.IsChecked == true)
+                    {
+                        SmartSettings.Default.username = UsernameInput.Text;
+                        SmartSettings.Default.password = PasswordInput.Password;
+                        SmartSettings.Default.AutoLogin = true;
+                        SmartSettings.Default.Save();
+                    }
+                    Close();
+                    break;
+                case Util.LoginState.UserDoesNotExist:
+                    this.ShowMessageAsync("Login Failed", "Username does not exist");
+                    break;
+                case Util.LoginState.DetailsIncorrect:
+                    this.ShowMessageAsync("Login Failed", "Username or password is incorrect");
+                    break;
+                case Util.LoginState.ConnectionFailed:
+                    this.ShowMessageAsync("Login Failed", "Connection failed");
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
         private void UsernameInput_OnGotFocus(object sender, RoutedEventArgs e) {
@@ -51,9 +86,16 @@ namespace SmartArchive.Windows {
         }
 
         private void PasswordInput_OnLostFocus(object sender, RoutedEventArgs e) {
-            if (PasswordInput.Password == string.Empty || PasswordInput.Password == " ") {
+            if (string.IsNullOrEmpty(PasswordInput.Password)) {
                 PasswordInput.Password = "Password";
                 PasswordInput.FontStyle = FontStyles.Italic;
+            }
+        }
+
+        // Listens for Enter keypress in password 
+        private void PasswordInput_KeyDown(object sender, KeyEventArgs e) {
+            if (e.Key == Key.Enter) {
+               Login(UsernameInput.Text,PasswordInput.Password);
             }
         }
     }

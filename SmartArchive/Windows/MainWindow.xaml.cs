@@ -25,7 +25,15 @@ namespace SmartArchive.Windows
         {
             var loginWindow = new LoginWindow(); // Creates new instance of LoginWindow
             Hide(); // Hides MainWindow
-            loginWindow.Show(); // Shows LoginWindow
+
+            SmartSettings.Default.Reset();
+
+            if (!SmartSettings.Default.AutoLogin) {
+                loginWindow.Show();
+            }
+            else {
+                Show();
+            }
 
             InitializeComponent();
             
