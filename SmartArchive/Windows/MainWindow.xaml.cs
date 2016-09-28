@@ -65,7 +65,7 @@ namespace SmartArchive.Windows
             string name = (sender as ToggleButton).Name;
 
             _leftMenuVisible = !_leftMenuVisible;
-            FoLeftMenu.IsOpen = _leftMenuVisible;
+            FlyOutMenu.IsOpen = _leftMenuVisible;
 
             switch (name) {
                 case "FlyOutOpener":

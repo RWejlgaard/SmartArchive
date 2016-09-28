@@ -17,14 +17,14 @@
     <!-- FlyOut Menu -->
     <controls:MetroWindow.Flyouts>
         <controls:FlyoutsControl>
-            <controls:Flyout x:Name="FoLeftMenu" Position="Left" Width="200" Margin="0,15,0,0"
-                             TitleVisibility="Collapsed"
-                             CloseButtonVisibility="Collapsed">
+            <controls:Flyout x:Name="FlyOutMenu" Position="Left" Width="190" Margin="0,15,0,0"
+                             TitleVisibility="Collapsed" CloseButtonVisibility="Collapsed">
                 <Grid x:Name="FlyOutGrid" Margin="0,-35,0,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
                         <RowDefinition Height="2.5" />
+                        <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
@@ -36,15 +36,45 @@
                            HorizontalAlignment="Left" VerticalAlignment="Bottom" />
 
                     <!-- Filter selection -->
-                    <ListBox x:Name="FileTypeSelection" Grid.Row="1" ItemsSource="{Binding Path=FileTypeList}">
-                        <ListBox.ItemTemplate>
+                    <ListView x:Name="FileTypeSelection" Grid.Row="1" ItemsSource="{Binding Path=FileTypeList}"
+                              HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
+                              BorderBrush="{x:Null}" Foreground="Black" Background="{x:Null}">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="Focusable" Value="false"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel>
+                                <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                     <CheckBox Content="{Binding Path=.}"/>
                                 </StackPanel>
                             </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    
+                    <!-- Splitter -->
+                    <GridSplitter Grid.Row="2" HorizontalAlignment="Stretch"
+                      IsEnabled="False" Background="#7F000000" />
+
+                    <!-- User picture and name -->
+                    <Grid Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <Image Grid.Column="0" Source="/SmartArchive;component/Assets/Generic Profile Picture.png" Width="32" Height="32" Margin="10,5,0,5" />
+                        <Label Grid.Column="1" Content="Delicious Cake" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" />
+                    </Grid>
+
+                    <!-- Usercontrols -->
+                    <StackPanel Grid.Row="4" Margin="0,0,0,1">
+                        <Button Content="Account" Style="{DynamicResource MaterialDesignFlatButton}" HorizontalContentAlignment="Left" Foreground="Black"/>
+                        <Button Content="Settings" Style="{DynamicResource MaterialDesignFlatButton}" HorizontalContentAlignment="Left" Foreground="Black"/>
+                        <Button Content="About" Style="{DynamicResource MaterialDesignFlatButton}" HorizontalContentAlignment="Left" Foreground="Black"/>
+                        <Button Content="Sign out" Style="{DynamicResource MaterialDesignFlatButton}" HorizontalContentAlignment="Left" Foreground="Black"/>
+                    </StackPanel>
 
                 </Grid>
             </controls:Flyout>
@@ -70,7 +100,7 @@
                       HorizontalAlignment="Center" />
         <GridSplitter Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Width="2.5" HorizontalAlignment="Stretch"
                       IsEnabled="False" Background="#7F000000" />
-        
+
         <!-- File viewer -->
         <!-- Float action button -->
 
