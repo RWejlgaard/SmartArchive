@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\niklas.ATDATA\Documents\GitHub\SmartArchive\SmartArchive\obj\Debug\
+C:\Users\niklas.ATDATA\Documents\GitHub\SmartArchive\SmartArchive\obj\Release\
 SmartArchive
 none
 false
-DEBUG;TRACE
+TRACE
 C:\Users\niklas.ATDATA\Documents\GitHub\SmartArchive\SmartArchive\App.xaml
 3496222433
 
-14-1836399379
-20-370477743
+10680198092
+19-1202531912
 Windows\debug.xaml;Windows\LoginWindow.xaml;Windows\MainWindow.xaml;
 
-False
+True
 

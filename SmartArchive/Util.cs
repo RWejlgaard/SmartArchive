@@ -125,6 +125,7 @@ namespace SmartArchive {
             var state = LoginState.Success;
 
             try {
+
                 pass = GetFromLoginsSql("password", username);
             }
             catch (Exception) {
@@ -137,7 +138,11 @@ namespace SmartArchive {
                 state = !username.existsInSql() ? LoginState.UserDoesNotExist : LoginState.DetailsIncorrect;
             }
 
-            Username = FirstCharToUpper(GetFromLoginsSql("username", username));
+            try {
+                Username = FirstCharToUpper(GetFromLoginsSql("username", username));
+            }
+            catch (Exception) {}
+
             return state;
         }
 

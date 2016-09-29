@@ -4,7 +4,9 @@
                       xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
                       Title="Smart Archive" Height="600" Width="800"
                       WindowStartupLocation="CenterScreen"
-                      Icon="/SmartArchive;component/Assets/Icons/icon_32x32-plain.png">
+                      Icon="/SmartArchive;component/Assets/Icons/icon_32x32-experimental.png"
+                      FontFamily="/SmartArchive;component/Assets/#Futura Bk BT" FontSize="14.667"
+                      GlowBrush="{DynamicResource WindowTitleColorBrush}" BorderThickness="1">
 
     <!--<Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>
@@ -22,7 +24,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
-                        <RowDefinition Height="2.5" />
+                        <RowDefinition Height="1" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
@@ -46,7 +48,7 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                                    <CheckBox Content="{Binding Path=.}" />
+                                    <CheckBox Content="{Binding Path=.}" IsChecked="True" />
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
@@ -54,7 +56,7 @@
 
                     <!-- Splitter -->
                     <GridSplitter Grid.Row="2" HorizontalAlignment="Stretch"
-                                  IsEnabled="False" Background="#7F000000" />
+                                  IsEnabled="False" Background="Black" />
 
                     <!-- UserSection grid -->
                     <Grid x:Name="UserSection" Row="3">
@@ -96,7 +98,7 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="40" />
-            <ColumnDefinition Width="2.5" />
+            <ColumnDefinition Width="1" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="150" />
         </Grid.ColumnDefinitions>
@@ -105,8 +107,8 @@
         <ToggleButton x:Name="FlyOutOpener" Click="FlyOutButton_OnClick" Grid.Column="0" Grid.Row="0"
                       Style="{DynamicResource MaterialDesignHamburgerToggleButton}" VerticalAlignment="Top"
                       HorizontalAlignment="Center" />
-        <GridSplitter Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Width="2.5" HorizontalAlignment="Stretch"
-                      IsEnabled="False" Background="#7F000000" />
+        <GridSplitter Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" HorizontalAlignment="Stretch"
+                      IsEnabled="False" Background="Black"/>
 
         <!-- File viewer -->
         <!-- Float action button -->
