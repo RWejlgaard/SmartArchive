@@ -1,57 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using MahApps.Metro.Controls.Dialogs;
 
-namespace SmartArchive.Windows
-{
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow
-    {
-        private ObservableCollection<string> _fileTypeList = new ObservableCollection<string>();
-        public ObservableCollection<string> FileTypeList => _fileTypeList;
+namespace SmartArchive.Windows {
+    public partial class MainWindow {
         private bool _leftMenuVisible;
-        
-        public MainWindow()
-        {
-            var loginWindow = new LoginWindow(); // Creates new instance of LoginWindow
-            Hide(); // Hides MainWindow
+
+        public MainWindow() {
+            // Creates new instance of LoginWindow
+            var loginWindow = new LoginWindow();
+
+            // Hides MainWindow
+            Hide(); 
+
+            // Handles if the user has enabled Autologin
             if (!SmartSettings.Default.AutoLogin) {
-                loginWindow.Show(); // Shows LoginWindow
+                loginWindow.Show();
             }
             else {
                 Show();
             }
+
             InitializeComponent();
             DataContext = this;
 
-            _fileTypeList.Add("txt");
-            _fileTypeList.Add("png");
-            _fileTypeList.Add("jpg");
-            _fileTypeList.Add("gif");
-            _fileTypeList.Add("tiff");
-            _fileTypeList.Add("zip");
-            _fileTypeList.Add("rar");
 
+            FileTypeList.Add("txt");
+            FileTypeList.Add("png");
+            FileTypeList.Add("jpg");
+            FileTypeList.Add("gif");
+            FileTypeList.Add("tiff");
+            FileTypeList.Add("zip");
+            FileTypeList.Add("rar");
+
+            // Shows mainwindow if login is successful or closes program
             loginWindow.Closed += delegate {
-                if (loginWindow.LoginSuccess)
-                {
+                if (loginWindow.LoginSuccess) {
                     Show();
                 }
                 else {
@@ -60,8 +44,11 @@ namespace SmartArchive.Windows
             };
         }
 
+        // List that is used to populate the filetype list in the flyout menu
+        public ObservableCollection<string> FileTypeList { get; } = new ObservableCollection<string>();
+
         private void FlyOutButton_OnClick(object sender, RoutedEventArgs e) {
-            string name = (sender as ToggleButton).Name;
+            var name = (sender as ToggleButton).Name;
 
             _leftMenuVisible = !_leftMenuVisible;
             FlyOutMenu.IsOpen = _leftMenuVisible;
@@ -78,8 +65,7 @@ namespace SmartArchive.Windows
             }
         }
 
-        private async void SignOutBtn_Click(object sender, RoutedEventArgs e)
-        {
+        private void SignOutBtn_Click(object sender, RoutedEventArgs e) {
             SmartSettings.Default.Reset();
             Util.Restart();
         }

@@ -1,36 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using MahApps.Metro.Controls.Dialogs;
-using SmartArchive.Properties;
 
 namespace SmartArchive.Windows {
-    /// <summary>
-    /// Interaction logic for LoginWindow.xaml
-    /// </summary>
     public partial class LoginWindow {
+        // boolean used by mainwindow to determinate if login was successful
         public bool LoginSuccess;
-        public bool UsernameRemembrance;
 
         public LoginWindow() {
             InitializeComponent();
+
+            // Loads Settings from cold storage
             SmartSettings.Default.Reload();
-            if (SmartSettings.Default.AutoLogin)
-            {
+
+            // If autologin is activated, try to login if login fails it may have been deleted from sql
+            if (SmartSettings.Default.AutoLogin) {
                 try {
                     Login(SmartSettings.Default.username, SmartSettings.Default.password);
                 }
                 catch (Exception) {
+                    // resets settings and restarts the program, showing the login screen again
                     SmartSettings.Default.Reset();
                     Util.Restart();
                 }
@@ -38,16 +28,16 @@ namespace SmartArchive.Windows {
         }
 
         private void LoginButton_OnClick(object sender, RoutedEventArgs e) {
-            Login(UsernameInput.Text,PasswordInput.Password);
+            Login(UsernameInput.Text, PasswordInput.Password);
         }
 
         private async void Login(string username, string password) {
-            switch (Util.AuthUser(username, password))
-            {
+
+            // AuthUser returns different LoginStates, this is used for error handling
+            switch (Util.AuthUser(username, password)) {
                 case Util.LoginState.Success:
                     LoginSuccess = true;
-                    if (RememberCheckBox.IsChecked == true)
-                    {
+                    if (RememberCheckBox.IsChecked == true) {
                         SmartSettings.Default.username = UsernameInput.Text;
                         SmartSettings.Default.password = PasswordInput.Password;
                         SmartSettings.Default.AutoLogin = true;
@@ -56,14 +46,17 @@ namespace SmartArchive.Windows {
                     Close();
                     break;
                 case Util.LoginState.UserDoesNotExist:
+                    // If user doesn't exist, prompt the user to register
+                    // This is using the asyncronous operator await which awaits the ShowMessage task for returning a value
                     var result = await this.ShowMessageAsync("Login Failed", "Username does not exist\nDo you wish to register?", MessageDialogStyle.AffirmativeAndNegative);
+
                     if (result == MessageDialogResult.Affirmative) {
                         switch (Util.CreateUser(username, password)) {
                             case Util.RegisterState.Success:
                                 await this.ShowMessageAsync("Success", "User registered");
                                 break;
                             case Util.RegisterState.ConnectionFailed:
-                                await this.ShowMessageAsync("Oops","Connection failed");
+                                await this.ShowMessageAsync("Oops", "Connection failed");
                                 break;
                             case Util.RegisterState.UsernameTooLong:
                                 await this.ShowMessageAsync("Oops", "Username too long");
