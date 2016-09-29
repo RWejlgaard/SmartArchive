@@ -6,12 +6,16 @@ namespace SmartArchive.Windows {
     public partial class MainWindow {
         private bool _leftMenuVisible;
 
+        public string Username {
+            get { return Util.Username; }
+        }
+
         public MainWindow() {
             // Creates new instance of LoginWindow
             var loginWindow = new LoginWindow();
 
             // Hides MainWindow
-            Hide(); 
+            Hide();
 
             // Handles if the user has enabled Autologin
             if (!SmartSettings.Default.AutoLogin) {
@@ -23,7 +27,6 @@ namespace SmartArchive.Windows {
 
             InitializeComponent();
             DataContext = this;
-
 
             FileTypeList.Add("txt");
             FileTypeList.Add("png");

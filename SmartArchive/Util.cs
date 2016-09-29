@@ -8,7 +8,6 @@ using Application = System.Windows.Forms.Application;
 
 namespace SmartArchive {
     internal static class Util {
-
         public enum LoginState {
             Success,
             UserDoesNotExist,
@@ -21,13 +20,18 @@ namespace SmartArchive {
             UsernameExists,
             UsernameTooLong,
             UsernameTooShort,
+            PasswordDoesNotMeetCriteria,
             ConnectionFailed
         }
 
+        // Database variables
         private static bool _isConnected;
         private static MySqlConnection _sql;
         public static string Host = "smartarchive.net";
         public static string ConnString = $"Server={Host};Database=smartarchive;Uid=root;Pwd=Password!;";
+
+        // Persistant variables
+        public static string Username;
 
         private static async void Connect() {
             if (_isConnected) return;
@@ -42,23 +46,24 @@ namespace SmartArchive {
                 await _sql.OpenAsync();
                 _isConnected = true;
             }
-            catch (Exception e) {
+            catch (Exception) {
                 _isConnected = false;
-                MessageBox.Show(e.ToString());
             }
         }
 
         private static bool existsInSql(this string username) {
-            var selectUsername = new MySqlCommand($"SELECT * FROM smartarchive.logins WHERE username = \"{username}\"", _sql);
+            var selectUsername = new MySqlCommand($"SELECT * FROM smartarchive.logins WHERE username = \"{username}\"",
+                _sql);
             int usernameExists;
 
             try {
                 usernameExists = Convert.ToInt32(selectUsername.ExecuteScalar());
             }
             catch (Exception) {
+                selectUsername.Dispose();
                 return false;
             }
-
+            selectUsername.Dispose();
             return usernameExists > 0;
         }
 
@@ -76,9 +81,15 @@ namespace SmartArchive {
             else if (username.Length > 9) {
                 state = RegisterState.UsernameTooLong;
             }
+            else if (password.Length < 4) {
+                state = RegisterState.PasswordDoesNotMeetCriteria;
+            }
             else {
                 state = RegisterState.Success;
-                var createUser = new MySqlCommand($"INSERT INTO smartarchive.logins (username, password) VALUES(\"{username}\",\"{Sha256(password)}\")", _sql);
+                var createUser =
+                    new MySqlCommand(
+                        $"INSERT INTO smartarchive.logins (username, password) VALUES(\"{username}\",\"{Sha256(password)}\")",
+                        _sql);
                 createUser.ExecuteNonQuery();
             }
 
@@ -94,31 +105,44 @@ namespace SmartArchive {
 
         public static string GetFromLoginsSql(string column, string username) {
             Connect();
-            var row = new MySqlCommand($"SELECT `{column}` FROM smartarchive.logins where username = \"{username}\"", _sql);
+            var row = new MySqlCommand($"SELECT `{column}` FROM smartarchive.logins where username = \"{username}\"",
+                _sql);
 
-            try {
-                var reader = row.ExecuteReader();
-                reader.Read();
-                row.Dispose();
-                return reader.GetString(0);
-            }
-            catch (Exception) {
-                return null;
+            using (MySqlDataReader reader = row.ExecuteReader()) {
+                try {
+                    reader.Read();
+                    return reader.GetString(0);
+                }
+                catch (Exception) {
+                    return null;
+                }
             }
         }
 
         public static LoginState AuthUser(string username, string password) {
             Connect();
+            string pass;
             var state = LoginState.Success;
-            var pass = GetFromLoginsSql("password", username);
-            if (pass == null) {
-                state =  LoginState.ConnectionFailed;
+
+            try {
+                pass = GetFromLoginsSql("password", username);
             }
-            else if (Sha256(password) != pass) {
+            catch (Exception) {
+                SmartSettings.Default.Reset();
+                state = LoginState.ConnectionFailed;
+                return state;
+            }
+
+            if (Sha256(password) != pass) {
                 state = !username.existsInSql() ? LoginState.UserDoesNotExist : LoginState.DetailsIncorrect;
             }
 
+            Username = FirstCharToUpper(GetFromLoginsSql("username", username));
             return state;
+        }
+
+        public static string FirstCharToUpper(string input) {
+            return input.First().ToString().ToUpper() + input.Substring(1);
         }
 
         public static void Restart() {

@@ -32,7 +32,6 @@ namespace SmartArchive.Windows {
         }
 
         private async void Login(string username, string password) {
-
             // AuthUser returns different LoginStates, this is used for error handling
             switch (Util.AuthUser(username, password)) {
                 case Util.LoginState.Success:
@@ -63,6 +62,9 @@ namespace SmartArchive.Windows {
                                 break;
                             case Util.RegisterState.UsernameTooShort:
                                 await this.ShowMessageAsync("Oops", "Username too short");
+                                break;
+                            case Util.RegisterState.PasswordDoesNotMeetCriteria:
+                                await this.ShowMessageAsync("Oops", "Password must be 4 or more characters");
                                 break;
                             default:
                                 throw new ArgumentOutOfRangeException();

@@ -4,8 +4,7 @@
                       xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
                       Title="Smart Archive" Height="600" Width="800"
                       WindowStartupLocation="CenterScreen"
-                      Icon="/SmartArchive;component/Assets/Icons/icon_32x32-plain.png"
-                      >
+                      Icon="/SmartArchive;component/Assets/Icons/icon_32x32-plain.png">
 
     <!--<Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>
@@ -41,39 +40,47 @@
                               BorderBrush="{x:Null}" Foreground="Black" Background="{x:Null}">
                         <ListView.ItemContainerStyle>
                             <Style TargetType="ListViewItem">
-                                <Setter Property="Focusable" Value="false"/>
+                                <Setter Property="Focusable" Value="false" />
                             </Style>
                         </ListView.ItemContainerStyle>
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                                    <CheckBox Content="{Binding Path=.}"/>
+                                    <CheckBox Content="{Binding Path=.}" />
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                    
+
                     <!-- Splitter -->
                     <GridSplitter Grid.Row="2" HorizontalAlignment="Stretch"
-                      IsEnabled="False" Background="#7F000000" />
+                                  IsEnabled="False" Background="#7F000000" />
 
-                    <!-- User picture and name -->
-                    <Grid Row="3">
+                    <!-- UserSection grid -->
+                    <Grid x:Name="UserSection" Row="3">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        
-                        <Image Grid.Column="0" Source="/SmartArchive;component/Assets/Generic Profile Picture.png" Width="32" Height="32" Margin="10,5,0,5" />
-                        <Label Grid.Column="1" Content="████████" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" />
+
+                        <!-- User picture and name -->
+                        <Image Grid.Column="0" Source="/SmartArchive;component/Assets/Generic Profile Picture.png"
+                               Width="32" Height="32" Margin="10,5,0,5" />
+                        <Label Grid.Column="1" Content="{Binding Username}" VerticalAlignment="Center"
+                               FontWeight="Bold" FontSize="16" />
                     </Grid>
 
                     <!-- Usercontrols -->
                     <StackPanel Grid.Row="4" Margin="0,0,0,1">
-                        <Button Content="Account" Style="{DynamicResource MaterialDesignFlatButton}" HorizontalContentAlignment="Left" Foreground="Black"/>
-                        <Button Content="Settings" Style="{DynamicResource MaterialDesignFlatButton}" HorizontalContentAlignment="Left" Foreground="Black"/>
-                        <Button Content="About" Style="{DynamicResource MaterialDesignFlatButton}" HorizontalContentAlignment="Left" Foreground="Black"/>
-                        <Button x:Name="SignOutBtn" Content="Sign out" Style="{DynamicResource MaterialDesignFlatButton}" HorizontalContentAlignment="Left" Foreground="Black" Click="SignOutBtn_Click"/>
+                        <Button Content="Account" Style="{DynamicResource MaterialDesignFlatButton}"
+                                HorizontalContentAlignment="Left" Foreground="Black" />
+                        <Button Content="Settings" Style="{DynamicResource MaterialDesignFlatButton}"
+                                HorizontalContentAlignment="Left" Foreground="Black" />
+                        <Button Content="About" Style="{DynamicResource MaterialDesignFlatButton}"
+                                HorizontalContentAlignment="Left" Foreground="Black" />
+                        <Button x:Name="SignOutBtn" Content="Sign out"
+                                Style="{DynamicResource MaterialDesignFlatButton}" HorizontalContentAlignment="Left"
+                                Foreground="Black" Click="SignOutBtn_Click" />
                     </StackPanel>
 
                 </Grid>
