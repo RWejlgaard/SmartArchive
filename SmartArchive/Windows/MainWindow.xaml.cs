@@ -81,8 +81,7 @@ namespace SmartArchive.Windows
         private async void SignOutBtn_Click(object sender, RoutedEventArgs e)
         {
             SmartSettings.Default.Reset();
-            System.Windows.Forms.Application.Restart();
-            Application.Current.Shutdown();
+            Util.Restart();
         }
     }
 }

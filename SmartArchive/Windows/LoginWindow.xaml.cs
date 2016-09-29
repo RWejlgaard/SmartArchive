@@ -27,7 +27,13 @@ namespace SmartArchive.Windows {
             SmartSettings.Default.Reload();
             if (SmartSettings.Default.AutoLogin)
             {
-                Login(SmartSettings.Default.username, SmartSettings.Default.password);
+                try {
+                    Login(SmartSettings.Default.username, SmartSettings.Default.password);
+                }
+                catch (Exception) {
+                    SmartSettings.Default.Reset();
+                    Util.Restart();
+                }
             }
         }
 

@@ -93,10 +93,35 @@ namespace SmartArchive {
             return crypto.Aggregate(hash, (current, theByte) => current + theByte.ToString("x"));
         }
 
+        public static string GetFromLoginsSql(string column, string username) {
+            Connect();
+            var Row = new MySqlCommand($"SELECT `{column}` FROM smartarchive.logins where username = \"{username}\"", _sql);
+            MySqlDataReader reader;
+            var state = LoginState.Success;
+
+            try
+            {
+                reader = Row.ExecuteReader();
+                reader.Read();
+                Row.Dispose();
+                return reader.GetString(0);
+            }
+            catch (Exception) {
+                return null;
+            }
+        }
+
         public static LoginState AuthUser(string username, string password) {
             Connect();
-            username = username.ToUpper();
-            var getUserRow = new MySqlCommand($"SELECT `password` FROM smartarchive.logins where username = \"{username}\"", _sql);
+
+            var pass = GetFromLoginsSql("password", username);
+            if (pass == null) {
+                return LoginState.ConnectionFailed;
+            }
+            else {
+
+
+                /*var getUserRow = new MySqlCommand($"SELECT `password` FROM smartarchive.logins where username = \"{username}\"", _sql);
             MySqlDataReader reader = null;
             var state = LoginState.Success;
 
@@ -116,17 +141,22 @@ namespace SmartArchive {
             catch (Exception) {
                 state = LoginState.UserDoesNotExist;
             }
+            */
+                var state = LoginState.Success;
 
-            var hash = Sha256(password);
+                var hash = Sha256(password);
 
-            if (hash != pass) {
-                state = !username.existsInSql() ? LoginState.UserDoesNotExist : LoginState.DetailsIncorrect;
+                if (hash != pass) {
+                    state = !username.existsInSql() ? LoginState.UserDoesNotExist : LoginState.DetailsIncorrect;
+                }
+                
+                return state;
             }
+        }
 
-            getUserRow.Dispose();
-            reader.Dispose();
-
-            return state;
+        public static void Restart() {
+            System.Windows.Forms.Application.Restart();
+            Application.Current.Shutdown();
         }
     }
 }
