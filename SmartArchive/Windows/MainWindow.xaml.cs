@@ -10,6 +10,7 @@ namespace SmartArchive.Windows {
             get { return Util.Username; }
         }
 
+        // TODO Make and update comments!
         public MainWindow() {
             // Creates new instance of LoginWindow
             var loginWindow = new LoginWindow();
@@ -71,6 +72,28 @@ namespace SmartArchive.Windows {
         private void SignOutBtn_Click(object sender, RoutedEventArgs e) {
             SmartSettings.Default.Reset();
             Util.Restart();
+        }
+
+        private void PopupBox_OnOpened(object sender, RoutedEventArgs e) {
+            FloatingActionBtn.Opacity = 0.7;
+            FloatActionLabel.Content = "Close";
+        }
+
+        private void PopupBox_OnClosed(object sender, RoutedEventArgs e) {
+            FloatingActionBtn.Opacity = 1.0;
+            FloatActionLabel.Content = "";
+        }
+
+        private void AddAction_OnClick(object sender, RoutedEventArgs e) {
+            // TODO Add files to list
+        }
+
+        private void RemoveAction_OnClick(object sender, RoutedEventArgs e) {
+            // TODO Remove files from list
+        }
+
+        private void SettingsAction_OnClick(object sender, RoutedEventArgs e) {
+            // TODO Open selected file properties
         }
     }
 }

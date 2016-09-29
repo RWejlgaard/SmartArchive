@@ -7,6 +7,7 @@ using MySql.Data.MySqlClient;
 using Application = System.Windows.Forms.Application;
 
 namespace SmartArchive {
+    // TODO Make and update comments!
     internal static class Util {
         public enum LoginState {
             Success,
@@ -125,7 +126,6 @@ namespace SmartArchive {
             var state = LoginState.Success;
 
             try {
-
                 pass = GetFromLoginsSql("password", username);
             }
             catch (Exception) {
@@ -141,7 +141,8 @@ namespace SmartArchive {
             try {
                 Username = FirstCharToUpper(GetFromLoginsSql("username", username));
             }
-            catch (Exception) {}
+            catch (Exception) {
+            }
 
             return state;
         }

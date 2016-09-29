@@ -8,8 +8,10 @@ namespace SmartArchive.Windows {
         // boolean used by mainwindow to determinate if login was successful
         public bool LoginSuccess;
 
+        // TODO Make and update comments!
         public LoginWindow() {
             InitializeComponent();
+            Topmost = true;
 
             // Loads Settings from cold storage
             SmartSettings.Default.Reload();

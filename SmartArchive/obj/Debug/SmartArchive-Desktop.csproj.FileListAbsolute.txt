@@ -39,7 +39,6 @@ C:\Users\niklas.ATDATA\Documents\GitHub\SmartArchive\SmartArchive\bin\Debug\MahA
 C:\Users\niklas.ATDATA\Documents\GitHub\SmartArchive\SmartArchive\bin\Debug\MaterialDesignColors.pdb
 C:\Users\niklas.ATDATA\Documents\GitHub\SmartArchive\SmartArchive\bin\Debug\MaterialDesignThemes.Wpf.pdb
 C:\Users\niklas.ATDATA\Documents\GitHub\SmartArchive\SmartArchive\bin\Debug\MaterialDesignThemes.Wpf.xml
-C:\Users\niklas.ATDATA\Documents\GitHub\SmartArchive\SmartArchive\obj\Debug\SmartArchive-Desktop.csprojResolveAssemblyReference.cache
 C:\Users\niklas.ATDATA\Documents\GitHub\SmartArchive\SmartArchive\obj\Debug\Windows\MainWindow.baml
 C:\Users\niklas.ATDATA\Documents\GitHub\SmartArchive\SmartArchive\obj\Debug\App.baml
 C:\Users\niklas.ATDATA\Documents\GitHub\SmartArchive\SmartArchive\obj\Debug\Windows\LoginWindow.g.cs
