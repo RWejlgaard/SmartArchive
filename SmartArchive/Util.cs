@@ -7,8 +7,9 @@ using MySql.Data.MySqlClient;
 using Application = System.Windows.Forms.Application;
 
 namespace SmartArchive {
-    // TODO Make and update comments!
     internal static class Util {
+
+        // Enum used as return type in AuthUser
         public enum LoginState {
             Success,
             UserDoesNotExist,
@@ -16,6 +17,7 @@ namespace SmartArchive {
             ConnectionFailed
         }
 
+        // Enum used as return type in CreateUser
         public enum RegisterState {
             Success,
             UsernameExists,
@@ -37,6 +39,7 @@ namespace SmartArchive {
         // Persistant variables
         public static string Username;
 
+        // Establishes active connection to SQL
         private static async void Connect() {
             if (_isConnected) return;
 
@@ -55,6 +58,7 @@ namespace SmartArchive {
             }
         }
 
+        // extension function for string to return true if username exists
         private static bool existsInSql(this string username) {
             var selectUsername = new MySqlCommand($"SELECT * FROM smartarchive.logins WHERE username = \"{username}\"",
                 _sql);
@@ -71,6 +75,7 @@ namespace SmartArchive {
             return usernameExists > 0;
         }
 
+        // Creates user in SQL
         public static RegisterState CreateUser(string username, string password) {
             Connect();
 
@@ -100,6 +105,7 @@ namespace SmartArchive {
             return state;
         }
 
+        // Takes string input and outputs sha256 sum
         private static string Sha256(string password) {
             var crypt = new SHA256Managed();
             var hash = string.Empty;
@@ -107,6 +113,7 @@ namespace SmartArchive {
             return crypto.Aggregate(hash, (current, theByte) => current + theByte.ToString("x"));
         }
 
+        // Gets the first value in given column based on username, this is primarily used for getting password
         public static string GetFromLoginsSql(string column, string username) {
             Connect();
             var row = new MySqlCommand($"SELECT `{column}` FROM smartarchive.logins where username = \"{username}\"",
@@ -123,6 +130,7 @@ namespace SmartArchive {
             }
         }
 
+        // Authenticates user login information using username and password input
         public static LoginState AuthUser(string username, string password) {
             Connect();
             string pass;
@@ -145,16 +153,18 @@ namespace SmartArchive {
                 Username = FirstCharToUpper(GetFromLoginsSql("username", username));
             }
             catch (Exception) {
-                // ignored
+                // do nothing
             }
 
             return state;
         }
 
+        // Returns input with upper case first letter
         public static string FirstCharToUpper(string input) {
             return input.First().ToString().ToUpper() + input.Substring(1);
         }
 
+        // Uses SizeSuffix to format number of bytes to normal size format
         public static string BytesToSizeUnit(long bytes) {
             if (bytes < 0) {
                 return "-" + BytesToSizeUnit(-bytes);
@@ -169,6 +179,7 @@ namespace SmartArchive {
             return $"{adjustedSize:n1} {SizeSuffixes[mag]}";
         }
 
+        // Restarts application
         public static void Restart() {
             Application.Restart();
             System.Windows.Application.Current.Shutdown();
