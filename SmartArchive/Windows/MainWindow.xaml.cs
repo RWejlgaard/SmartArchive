@@ -30,7 +30,6 @@ namespace SmartArchive.Windows {
         // boolean which determines if the FlyOut menu is visible
         private bool _leftMenuVisible;
 
-        // TODO Make and update comments!
         public MainWindow() {
             // Creates new instance of LoginWindow
             var loginWindow = new LoginWindow();
