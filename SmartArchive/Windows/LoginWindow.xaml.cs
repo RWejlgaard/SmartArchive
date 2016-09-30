@@ -5,10 +5,9 @@ using MahApps.Metro.Controls.Dialogs;
 
 namespace SmartArchive.Windows {
     public partial class LoginWindow {
-        // boolean used by mainwindow to determinate if login was successful
+        // boolean used by MainWindow to determinate if login was successful
         public bool LoginSuccess;
-
-        // TODO Make and update comments!
+        
         public LoginWindow() {
             InitializeComponent();
             Topmost = true;
@@ -84,6 +83,7 @@ namespace SmartArchive.Windows {
             }
         }
 
+        // Empties UsernameInput if it has default text
         private void UsernameInput_OnGotFocus(object sender, RoutedEventArgs e) {
             if (UsernameInput.Text == "Username...") {
                 UsernameInput.Text = string.Empty;
@@ -91,6 +91,7 @@ namespace SmartArchive.Windows {
             }
         }
 
+        // Resets UsernameInput to default text if it is empty or contains a single space
         private void UsernameInput_OnLostFocus(object sender, RoutedEventArgs e) {
             if (UsernameInput.Text == string.Empty || UsernameInput.Text == " ") {
                 UsernameInput.Text = "Username...";

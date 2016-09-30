@@ -9,13 +9,33 @@
                       FontFamily="/SmartArchive;component/Assets/#Futura Bk BT" FontSize="14.667"
                       GlowBrush="{DynamicResource WindowTitleColorBrush}" BorderThickness="1">
 
-    <!--<Controls:MetroWindow.RightWindowCommands>
-        <Controls:WindowCommands>
-
-        </Controls:WindowCommands>
-    </Controls:MetroWindow.RightWindowCommands>-->
-
-
+    <Window.Resources>
+        <Style x:Key="ArchiveEmptyButton" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border"
+                                BorderThickness="0"
+                                Padding="0"
+                                BorderBrush="Transparent"
+                                Background="Transparent">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#FFCBECF7" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    
     <!-- FlyOut Menu -->
     <controls:MetroWindow.Flyouts>
         <controls:FlyoutsControl>
@@ -40,7 +60,7 @@
                     <!-- Filter selection -->
                     <ListView x:Name="FileTypeSelection" Grid.Row="1" ItemsSource="{Binding Path=FileTypeList}"
                               HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
-                              BorderBrush="{x:Null}" Foreground="Black" Background="{x:Null}">
+                              BorderBrush="{x:Null}" Foreground="Black" Background="{x:Null}" BorderThickness="0">
                         <ListView.ItemContainerStyle>
                             <Style TargetType="ListViewItem">
                                 <Setter Property="Focusable" Value="false" />
@@ -111,6 +131,44 @@
                       IsEnabled="False" Background="Black" />
 
         <!-- File viewer -->
+        <ListView x:Name="FileView" Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" SelectionChanged="FileView_SelectionChanged"
+                  ItemsSource="{Binding Path=FileListCollection}" BorderThickness="0">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Grid Height="56">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="64" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" MaxHeight="86" MaxWidth="64"
+                                   Margin="3,5,0,5"
+                                   Source="{Binding Path=FileIcon}" HorizontalAlignment="Center"
+                                   VerticalAlignment="Stretch" />
+                            <TextBlock Grid.Row="0" Grid.Column="1" Margin="7,11,0,0"
+                                       Text="{Binding Path=FileName}" VerticalAlignment="Top" />
+                            <TextBlock Grid.Row="1" Grid.Column="1" Margin="7,0,0,11"
+                                       Text="{Binding Path=FileSize}" VerticalAlignment="Bottom" />
+                        </Grid>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListView>
+        <Button x:Name="ArchiveEmptyBtn" Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" Style="{StaticResource ArchiveEmptyButton}"
+                Click="AddAction_OnClick">
+            <Button.Content>
+                <StackPanel Margin="0,0,5,0">
+                    <TextBlock Text="Archive is empty" Foreground="Gray" FontSize="20" HorizontalAlignment="Center"
+                               VerticalAlignment="Center" />
+                    <TextBlock Text="Click here to add files." Foreground="Gray" HorizontalAlignment="Center"
+                               VerticalAlignment="Center" />
+                </StackPanel>
+            </Button.Content>
+        </Button>
         
         <!-- Float action button -->
         <Grid Margin="0,0,25,25" Grid.Row="1" Grid.Column="2" VerticalAlignment="Bottom" HorizontalAlignment="Right">

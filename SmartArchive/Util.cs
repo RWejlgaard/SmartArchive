@@ -25,6 +25,9 @@ namespace SmartArchive {
             ConnectionFailed
         }
 
+        // Readonly array that contains size units
+        static readonly string[] SizeSuffixes = { "bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB" };
+
         // Database variables
         private static bool _isConnected;
         private static MySqlConnection _sql;
@@ -142,6 +145,7 @@ namespace SmartArchive {
                 Username = FirstCharToUpper(GetFromLoginsSql("username", username));
             }
             catch (Exception) {
+                // ignored
             }
 
             return state;
@@ -149,6 +153,20 @@ namespace SmartArchive {
 
         public static string FirstCharToUpper(string input) {
             return input.First().ToString().ToUpper() + input.Substring(1);
+        }
+
+        public static string BytesToSizeUnit(long bytes) {
+            if (bytes < 0) {
+                return "-" + BytesToSizeUnit(-bytes);
+            }
+            if (bytes == 0) {
+                return "0.0 bytes";
+            }
+
+            var mag = (int) Math.Log(bytes, 1024);
+            var adjustedSize = (decimal) bytes/(1L << (mag*10));
+
+            return $"{adjustedSize:n1} {SizeSuffixes[mag]}";
         }
 
         public static void Restart() {
